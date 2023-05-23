@@ -1,0 +1,151 @@
+/* .bookingForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .optionsLabel {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .quantityInput {
+    margin-left: 10px;
+    width: 80px;
+  }
+  .submitButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .submitButton:hover {
+    background-color: #45A049;
+  } */
+
+
+  /* QurbaniNew.module.css */
+.Bimage{
+  background-image: url('../public/qurbaniPage2BG.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+   min-height: 100vh; /*Set the minimum height to fill the viewport */
+ 
+   padding-top: 1px;
+
+
+   display: flex;
+    justify-content: center;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 35px;
+  /* margin-top: 111px; */
+
+}
+
+.formpora{
+  margin-top: 112px;
+  width: 500px;
+  height: max-content;
+  background: black;
+  padding-bottom: 50px;
+  border-radius: 30px;
+}
+
+.bookingForm label {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.bookingForm input[type="text"],
+.bookingForm input[type="email"],
+.bookingForm input[type="tel"],
+.bookingForm input[type="number"]
+.bookingForm input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.bookingForm input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.bookingForm input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.bookingForm .quantityInput {
+  margin-left: 10px;
+  width: 60px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.bookingForm .optionsLabel {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #d61f25;
+  font-weight: bold;
+}
+
+.bookingForm .submitButton {
+  padding: 10px 20px;
+  background-color: #d61f25;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bookingForm .submitButton:hover {
+  background-color: #d61f25;
+}
+
+/* Additional styles for better visibility */
+.bookingForm input[type="checkbox"] + span {
+  margin-left: 5px;
+  color: black;
+}
+
+.bookingForm input[type="checkbox"]:checked + span {
+  font-weight: bold;
+}
+
+.bookingForm input[type="number"]::-webkit-inner-spin-button,
+.bookingForm input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bookingForm input[type="number"]::-moz-inner-spin-button,
+.bookingForm input[type="number"]::-moz-outer-spin-button {
+  -moz-appearance: none;
+  margin: 0;
+}
+
+.bookingForm input[type="number"]::-ms-inner-spin-button,
+.bookingForm input[type="number"]::-ms-outer-spin-button {
+  -ms-appearance: none;
+  margin: 0;
+}
+
+
+.Home_header__GCVRv .Home_uan__zAwX2{
+  color:"black";
+}

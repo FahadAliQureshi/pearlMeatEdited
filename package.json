@@ -1,0 +1,23 @@
+{
+  "name": "butcher",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "build2": "react-scripts build"
+  },
+  "dependencies": {
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.4",
+    "next": "^13.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "^5.0.1",
+    "scss": "^0.2.4"
+  }
+}
