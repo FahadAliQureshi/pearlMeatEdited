@@ -501,7 +501,31 @@ const ContactQurbaniNew = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission logic here
+  
+    const formData = {
+      name,
+      email,
+      deliveryDate,
+      phoneNumber,
+      animalOptions,
+      quantities
+    };
+  console.log(formData)
+    fetch('http://globaltechnologia.org/qrcodeNew/public/api/meat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => {
+        // Handle the response from the API
+        // e.g., show success message, redirect, etc.
+      })
+      .catch(error => {
+        // Handle errors that occur during the request
+      });
+  
     // Reset form fields
     setName('');
     setEmail('');
@@ -510,6 +534,7 @@ const ContactQurbaniNew = () => {
     setAnimalOptions([]);
     setQuantities({});
   };
+  
   return (
     <>
     <div className={styles.Bimage}>
