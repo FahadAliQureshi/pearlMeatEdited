@@ -1,7 +1,3 @@
-
- 
- 
-
 // import React, { useState, useEffect } from "react";
 // import styles from "../styles/Home.module.css";
 // import Image from "next/image";
@@ -327,8 +323,11 @@
 
 //         {show == true && <Modal message={response} setShow={setShow} />}
 
-        {/* footer */}
-        {/* <div className={styles.footer} id="footer">
+{
+  /* footer */
+}
+{
+  /* <div className={styles.footer} id="footer">
         <div className={styles.wrapper}>
           <div className={styles.foots}>
             <div className={styles.foot1}>
@@ -354,11 +353,15 @@
                   </span>
                   <p className={styles.p}>CSD Mall Westridge Rawalpindi.</p>
                 </div>
-              </div> */}
-        {/* <p className={styles.p} style={{maxWidth:"420px"}}>
+              </div> */
+}
+{
+  /* <p className={styles.p} style={{maxWidth:"420px"}}>
                 Pearl meat is one of the best quality meat providers in Pakistan. It is a brand of MHM foods and Beverages. Products include fresh Goat meat, fresh Beef meat, poultry, special meat, frozen mutton parts, veal parts and beef parts. 
-                </p> */}
-        {/* </div>
+                </p> */
+}
+{
+  /* </div>
 
             <div className={styles.foote}>
               <div className={styles.foot3}>
@@ -450,10 +453,8 @@
             © 2022 — Meat Pearls. All Rights Reserved.
           </p>
         </div>
-      </div> */}
-
-
-
+      </div> */
+}
 
 //       </div>
 //     </>
@@ -462,21 +463,40 @@
 
 // export default ContactQurbaniNew;
 
-
 // components/BookingForm.js
-import React, { useState } from 'react';
-import styles from './QurbaniNew.module.css'
-import Header from '../Components/Header';
-import HeaderPage2 from '../Components/HeaderPage2';
-import qurbaniImage from '../public/qurbaniPage2BG.jpg'
-import Image from 'next/image';
+import React, { useState } from "react";
+import styles from "./QurbaniNew.module.css";
+import Header from "../Components/Header";
+import HeaderPage2 from "../Components/HeaderPage2";
+import qurbaniImage from "../public/qurbaniPage2BG.jpg";
+import Image from "next/image";
+// import ConfirmationModal from '../Components/ConfirmationModal';
+import Modal from "react-modal";
 
 const ContactQurbaniNew = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [deliveryDate, setdeliveryDate] = useState('');
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
 
-  const [phoneNumber, setPhoneNumber] = useState('');
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const [showModal, setShowModal] = useState(false);
+  const handleSubmit2 = () => {
+    // Perform the form submission logic here
+    // After successful submission, show the modal
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [deliveryDate, setdeliveryDate] = useState("");
+
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [animalOptions, setAnimalOptions] = useState([]);
   const [quantities, setQuantities] = useState({});
   const handleAnimalOptionChange = (e) => {
@@ -484,7 +504,7 @@ const ContactQurbaniNew = () => {
     const updatedOptions = [...animalOptions];
     if (e.target.checked) {
       updatedOptions.push(option);
-      setQuantities({ ...quantities, [option]: '' });
+      setQuantities({ ...quantities, [option]: "" });
     } else {
       const index = updatedOptions.indexOf(option);
       if (index !== -1) {
@@ -501,131 +521,201 @@ const ContactQurbaniNew = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const formData = {
       name,
       email,
       deliveryDate,
       phoneNumber,
       animalOptions,
-      quantities
+      quantities,
     };
-  console.log(formData)
-    fetch('http://globaltechnologia.org/qrcodeNew/public/api/meat', {
-      method: 'POST',
+    console.log(formData);
+    fetch("http://globaltechnologia.org/qrcodeNew/public/api/meat", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     })
-      .then(response => {
+      .then((response) => {
+        openModal();
         // Handle the response from the API
         // e.g., show success message, redirect, etc.
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle errors that occur during the request
       });
-  
+
     // Reset form fields
-    setName('');
-    setEmail('');
-    setdeliveryDate('');
-    setPhoneNumber('');
+    setName("");
+    setEmail("");
+    setdeliveryDate("");
+    setPhoneNumber("");
     setAnimalOptions([]);
     setQuantities({});
   };
-  
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      background: "black",
+      color:"white",
+
+    },
+  };
+
   return (
     <>
-    <div className={styles.Bimage}>
-    <HeaderPage2 />
-    <div className={styles.formpora}>
-    <form className={styles.bookingForm} onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-      </label>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </label>
-      <label>
-        Phone Number:
-        <input
-          type="tel"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          required
-        />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      
+      >
+        <div 
+        style={{      display: "flex",
+        alignItems:"center",
+        flexDirection:"column",
+        justifyContent:"center"}}
+        >
+          <div style={{fontWeight:"bold",fontSize:25}}>Confirmation</div>
+
+          <div
+          style={{
+            margin:"20px 0px"
+          }}
+          >
+            Thank you for submitting the details. Our representative will call
+            for confirmation.
+          </div>
+
+          <span
+            onClick={() => {
+              closeModal();
+            }}
+          style={{background:"#d61f25", color:"white",padding: "6px 25px", borderRadius:"10px"}}
+          >
+            Close
+          </span>
+        </div>
+      </Modal>
+
+      <div className={styles.Bimage}>
+        <HeaderPage2 />
+
+        <div className={styles.formpora}>
+          <form className={styles.bookingForm} onSubmit={handleSubmit}>
+            <label>
+              Name:
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Email:
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Phone Number:
+              <input
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                required
+              />
               <label>
-        Delivery Date
-        <input type="date" value={deliveryDate} onChange={(e) => setdeliveryDate(e.target.value)} required
-        />
-      </label>
-      </label>
-      <p className={styles.optionsLabel}>Select Animals:</p>
-      <label>
-        <input
-          type="checkbox"
-          value="Cow"
-          checked={animalOptions.includes('Cow')}
-          onChange={handleAnimalOptionChange}
-        />
-        Cow
-        {animalOptions.includes('Cow') && (
-          <input
-            type="number"
-            value={quantities['Cow']}
-            onChange={(e) => handleQuantityChange(e, 'Cow')}
-            placeholder="Quantity"
-            className={styles.quantityInput}
-          />
-        )}
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="Goat"
-          checked={animalOptions.includes('Goat')}
-          onChange={handleAnimalOptionChange}
-        />
-        Goat
-        {animalOptions.includes('Goat') && (
-          <input
-            type="number"
-            value={quantities['Goat']}
-            onChange={(e) => handleQuantityChange(e, 'Goat')}
-            placeholder="Quantity"
-            className={styles.quantityInput}
-          />
-        )}
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="Cow Hissa"
-          checked={animalOptions.includes('Cow Hissa')}
-          onChange={handleAnimalOptionChange}
-        />
-        Cow Hissa
-        {animalOptions.includes('Cow Hissa') && (
-          <input
-            type="number"
-            value={quantities['Cow Hissa']}
-            onChange={(e) => handleQuantityChange(e, 'Cow Hissa')}
-            placeholder="Quantity"
-            className={styles.quantityInput}
-          />
-        )}
-      </label>
-      <button type="submit" className={styles.submitButton}>
-        Submit
-      </button>
-    </form>
-    </div>
-    </div>
+                Delivery Date
+                <input
+                  type="date"
+                  value={deliveryDate}
+                  onChange={(e) => setdeliveryDate(e.target.value)}
+                  required
+                />
+              </label>
+            </label>
+            <p className={styles.optionsLabel}>Select Animals:</p>
+            <label>
+              <input
+                type="checkbox"
+                value="Cow"
+                checked={animalOptions.includes("Cow")}
+                onChange={handleAnimalOptionChange}
+              />
+              Cow
+              {animalOptions.includes("Cow") && (
+                <input
+                  type="number"
+                  value={quantities["Cow"]}
+                  onChange={(e) => handleQuantityChange(e, "Cow")}
+                  placeholder="Quantity"
+                  className={styles.quantityInput}
+                />
+              )}
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Goat"
+                checked={animalOptions.includes("Goat")}
+                onChange={handleAnimalOptionChange}
+              />
+              Goat
+              {animalOptions.includes("Goat") && (
+                <input
+                  type="number"
+                  value={quantities["Goat"]}
+                  onChange={(e) => handleQuantityChange(e, "Goat")}
+                  placeholder="Quantity"
+                  className={styles.quantityInput}
+                />
+              )}
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Cow Hissa"
+                checked={animalOptions.includes("Cow Hissa")}
+                onChange={handleAnimalOptionChange}
+              />
+              Cow Hissa
+              {animalOptions.includes("Cow Hissa") && (
+                <input
+                  type="number"
+                  value={quantities["Cow Hissa"]}
+                  onChange={(e) => handleQuantityChange(e, "Cow Hissa")}
+                  placeholder="Quantity"
+                  className={styles.quantityInput}
+                />
+              )}
+            </label>
+            <button
+              onClick={() => {
+                openModal();
+              }}
+              type="submit"
+              className={styles.submitButton}
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   );
-
 };
 export default ContactQurbaniNew;
